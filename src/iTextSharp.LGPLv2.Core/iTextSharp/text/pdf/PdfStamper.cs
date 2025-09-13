@@ -1,4 +1,4 @@
-using System.util;
+﻿using System.util;
 using iTextSharp.text.pdf.collection;
 using iTextSharp.text.pdf.interfaces;
 using Org.BouncyCastle.X509;
@@ -318,10 +318,10 @@ public class PdfStamper : IPdfViewerPreferences, IPdfEncryptionSettings, IDispos
         {
             if (Directory.Exists(tempFile))
             {
-                tempFile = Path.GetRandomFileName();
+                tempFile = Path.Combine(tempFile, Path.GetRandomFileName());
             }
 
-            var fout = new FileStream(tempFile, FileMode.Create, FileAccess.Write);
+            var fout = new FileStream(tempFile, FileMode.Create, FileAccess.ReadWrite, FileShare.ReadWrite);
             stp = new PdfStamper(reader, fout, pdfVersion, append);
             stp.SignatureAppearance = new PdfSignatureAppearance(stp.Stamper);
             stp.SignatureAppearance.SetTempFile(tempFile);

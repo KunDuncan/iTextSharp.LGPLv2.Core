@@ -1,4 +1,4 @@
-using System.Text;
+﻿using System.Text;
 using System.util;
 using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.X509;
@@ -1175,7 +1175,8 @@ public class PdfSignatureAppearance
         {
             try
             {
-                _raf = new FileStream(TempFile, FileMode.Open, FileAccess.ReadWrite);
+                //_raf = new FileStream(TempFile, FileMode.Open, FileAccess.ReadWrite);
+                _raf = new FileStream(TempFile, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite);
                 var boutLen = (int)_raf.Length;
                 _range[_range.Length - 1] = boutLen - _range[_range.Length - 2];
                 var bf = new ByteBuffer();
